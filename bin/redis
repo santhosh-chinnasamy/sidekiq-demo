@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+cd `dirname $0`/..
+docker rm -f redis
+docker run \
+   -d \
+   --restart always \
+   --name redis \
+   -v $PWD/private/redis/data:/data \
+   -p 6380:6379 \
+   redis
