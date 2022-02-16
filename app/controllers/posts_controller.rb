@@ -38,6 +38,15 @@ class PostsController < ApplicationController
     @post.destroy
   end
 
+  def bulk_create
+    if params[:count].present?
+      BulkPostJob.perform_async(params[:count].to_i)
+      render json: { message: 'Bulk creation started' }
+    else
+      render json: { message: 'Missing count' }, status: :bad_request
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
