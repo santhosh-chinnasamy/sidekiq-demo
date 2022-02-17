@@ -1,6 +1,6 @@
 class BulkPostJob
   include Sidekiq::Job
-  sidekiq_options tags: ['tag1', '🥇']
+  sidekiq_options tags: ['tag1', '🥇'], retry: 1
 
   # visit https://github.com/mperham/sidekiq/wiki/Advanced-Options#workers to see available options
 

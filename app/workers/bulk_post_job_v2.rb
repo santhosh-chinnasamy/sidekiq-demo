@@ -1,9 +1,9 @@
 class BulkPostJobV2
   include Sidekiq::Job
-  sidekiq_options tags: ['tag2', '🥇']
+  sidekiq_options tags: ['tag2', '🥇'], retry: false
 
   # visit https://github.com/mperham/sidekiq/wiki/Complex-Job-Workflows-with-Batches
-  
+
   def perform(post)
     Post.create!(post)
   end
