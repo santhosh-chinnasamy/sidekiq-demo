@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```
+bundle install
+rails db:create db:migrate
+```
+run `bundle sidekiq -c 1` or `bundle sidekiq -C config/sidekiq.yml` to see execution of jobs.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## references
+- [Sidekiq Wiki](https://github.com/mperham/sidekiq/wiki/)
+- [Sidekiq options](https://github.com/mperham/sidekiq/wiki/Advanced-Options#workers)
+- [Bulk queueing](https://github.com/mperham/sidekiq/wiki/Bulk-Queueing)
+- [Bulk queueing 2](https://github.com/mperham/sidekiq/wiki/Complex-Job-Workflows-with-Batches)
