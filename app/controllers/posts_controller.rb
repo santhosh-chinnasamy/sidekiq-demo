@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
 
-    render json: @posts
+    render json: {total: Post.count, data: @posts}
   end
 
   # GET /posts/1
@@ -39,12 +39,18 @@ class PostsController < ApplicationController
   end
 
   def bulk_create
-    if params[:count].present?
-      BulkPostJob.perform_async(params[:count].to_i)
-      render json: { message: 'Bulk creation started' }
-    else
-      render json: { message: 'Missing count' }, status: :bad_request
-    end
+    type = params[:type]
+    count = params[:count] || 10
+
+    BulkPostJob.perform_async(type, count&.to_i)
+    render json: { message: 'Bulk creation started' }
+  end
+
+  def bulk_create_v2
+    count = params[:count] || 10
+
+    BulkPostJobV2.create(count&.to_i)
+    render json: { message: 'Bulk creation started' }
   end
 
   private
