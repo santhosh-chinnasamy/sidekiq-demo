@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
 
-    render json: {total: Post.count, data: @posts}
+    render json: { total: Post.count, data: @posts }
   end
 
   # GET /posts/1
@@ -36,6 +36,15 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   def destroy
     @post.destroy
+  end
+
+  def bulk_create_without_worker
+    count = params[:count] || 10
+    posts = count.to_i.times.map do
+      { name: Faker::Name.name, title: Faker::Lorem.sentence, content: Faker::Lorem.paragraph }
+    end
+    Post.create!(posts)
+    render json: { message: "#{count.to_i} posts created" }
   end
 
   def bulk_create

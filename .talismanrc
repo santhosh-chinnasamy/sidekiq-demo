@@ -1,0 +1,4 @@
+fileignoreconfig:
+- filename: config/routes.rb
+  checksum: cd0bfe3d26dd7ca1eb007504fd1aaea88b51e5c4ff05ca743070560942df321c
+version: "1.0"

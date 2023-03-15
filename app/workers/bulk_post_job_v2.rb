@@ -1,6 +1,6 @@
 class BulkPostJobV2
   include Sidekiq::Job
-  sidekiq_options tags: ['tag2', '🥇'], retry: false
+  sidekiq_options tags: ['tag2', '🥇'], retry: false#, queue: 'bulk_post_job_v2'
 
   # visit https://github.com/mperham/sidekiq/wiki/Complex-Job-Workflows-with-Batches
 
